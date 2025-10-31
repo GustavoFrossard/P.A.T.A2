@@ -6,8 +6,6 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ✅ CAMINHO PARA O BUILD DO REACT
-REACT_BUILD_DIR = BASE_DIR.parent / 'Roveri_final' / 'dist'
 
 SECRET_KEY = "dev-secret-key"
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
@@ -49,7 +47,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            REACT_BUILD_DIR,  # ✅ PASTA DO BUILD DO REACT
+            BASE_DIR/ "Roveri_final"
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -140,7 +138,7 @@ STATIC_URL = '/static/'
 
 # ✅ ARQUIVOS DO BUILD DO REACT
 STATICFILES_DIRS = [
-    REACT_BUILD_DIR,  # ✅ PASTA DO BUILD DO REACT (contém index.html e assets)
+    BASE_DIR/ "pages",
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
