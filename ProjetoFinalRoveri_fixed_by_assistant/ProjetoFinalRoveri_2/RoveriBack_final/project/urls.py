@@ -1,8 +1,9 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from accounts.views import CookieTokenObtainPairView, LogoutView, RegisterView, UserDetailView, CookieTokenRefreshView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 
 urlpatterns = [
     # Accounts (registration, login/logout)
@@ -22,6 +23,9 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/auth/', include('accounts.urls')),
     path('api/chat/', include('chat.urls')),
+    
+    # ✅ SERVE O REACT - ESTA LINHA DEVE SER A ÚLTIMA
+    re_path(r'^.*$', TemplateView.as_view(template_name='index.html')),
 ]
 
 if settings.DEBUG:
